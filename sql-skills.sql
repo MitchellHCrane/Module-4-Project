@@ -41,7 +41,7 @@ SELECT MAX(total) FROM invoice
 
 -- Find the smallest order total amount.
 
-SELECT min(total) FROM invoice
+SELECT MIN(total) FROM invoice
 
 
 -- Find all orders bigger than $5. 
@@ -94,13 +94,13 @@ on al.artist_id = ar.artist_id
 
 -- Select 10 artists in reverse alphabetical order.
 
-
+SELECT * FROM artist ORDER BY name DESC LIMIT 10;
 
 -- Select all artists that start with the word ‘Black’.
 
 SELECT *
 FROM artist
-WHERE IN name LIKE 'Black%'
+WHERE name LIKE 'Black%'
 
 -- Select all artists that contain the word ‘Black’.
 
@@ -152,8 +152,16 @@ ON pt.track_id = t.track_id
 WHERE playlist_id = 5
 
 -- Get all track names and the playlist name that they’re on ( 2 joins ).
-
+SELECT * FROM track t
+JOIN playlist_track pt ON pt.track_id = t.track_id
+JOIN playlist p ON pt. playlist_id = p.playlist_id
 -- Get all track names and album titles that are the genre Alternative & Punk ( 2 joins ).
+
+SELECT t.name, a.title FROM track track_id
+JOIN album a on t. album_id = a.album_id
+Join genre g ON g. genre_id = t.genre_id
+WHERE g. name = 'Alternative & Punk'
+;
 
 -- Data with Python
 -- In process.py, write another function that prints out all the melon orders that delivered over 10 melons.
